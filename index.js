@@ -7,11 +7,6 @@ const {
 
 const { program } = require("commander");
 
-async function getContactList() {
-  const contactsList = await listContacts();
-  return contactsList;
-}
-
 async function invokeAction({ action, id, name, email, phone }) {
   switch (action) {
     case "list":
@@ -24,13 +19,13 @@ async function invokeAction({ action, id, name, email, phone }) {
       break;
     case "remove":
       await removeContact(id);
-      const contactsListAfterRemove = await listContacts();
-      console.table(contactsListAfterRemove);
+      const contactsListAfterRemoving = await listContacts();
+      console.table(contactsListAfterRemoving);
       break;
     case "add":
       await addContact(name, email, phone);
-      const contactsListAfterAdd = await listContacts();
-      console.table(contactsListAfterAdd);
+      const contactsListAfterAdding = await listContacts();
+      console.table(contactsListAfterAdding);
       break;
     default:
       throw new Error(`Unknown action, got: ${action}`);
